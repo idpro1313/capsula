@@ -1,0 +1,65 @@
+version: '3.8'
+
+# Development docker-compose
+# Usage: docker-compose -f docker-compose.dev.yml up -d
+#
+# Note: For local development, bot uses long-polling mode
+# Webhook mode requires public HTTPS URL
+
+services:
+  # ==========================================
+  # PostgreSQL Database
+  # ==========================================
+  db:
+    image: postgres:16-alpine
+    container_name: capsula-db-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: capsula
+      POSTGRES_PASSWORD: capsula_dev
+      POSTGRES_DB: capsula
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_dev_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U capsula -d capsula"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - capsula-dev-network
+
+  # ==========================================
+  # Telegram Bot (Development - Long Polling)
+  # ==========================================
+  bot:
+    build:
+      context: .
+      dockerfile: apps/bot/Dockerfile
+    container_name: capsula-bot-dev
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      BOT_TOKEN: ${BOT_TOKEN:-your_bot_token_here}
+      # Don't set WEBHOOK_URL for local dev - uses long polling
+      DATABASE_URL: postgresql://capsula:capsula_dev@db:5432/capsula
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      # Mount source for hot reload (if using tsx in container)
+      - ./apps/bot/src:/app/apps/bot/src:ro
+    networks:
+      - capsula-dev-network
+
+volumes:
+  postgres_dev_data:
+    driver: local
+
+networks:
+  capsula-dev-network:
+    driver: bridge

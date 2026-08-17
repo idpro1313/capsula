@@ -1,0 +1,57 @@
+# Dependencies (will be installed in Docker)
+node_modules
+apps/bot/node_modules
+apps/web/node_modules
+packages/*/node_modules
+
+# Git
+.git
+.gitignore
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Environment files (contain secrets)
+.env
+.env.local
+.env.*.local
+.env.example
+
+# Documentation (not needed in image)
+*.md
+docs/
+
+# Docker files (not needed in build context)
+docker-compose*.yml
+Dockerfile
+.docker/
+
+# Test files
+*.test.ts
+*.spec.ts
+__tests__/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs (will be built in Docker)
+dist
+build
+*.tgz
+
+# Prisma migrations (generated in container)
+apps/bot/prisma/migrations
+
+# Temporary files
+*.tmp
+*.backup
+.cache

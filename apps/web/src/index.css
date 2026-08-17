@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tg-theme-bg-color: #0F0F23;
+  --tg-theme-text-color: #FFFFFF;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Safe area for mobile devices */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Rarity glow effects */
+.rarity-common { filter: drop-shadow(0 0 2px #A1A1AA); }
+.rarity-uncommon { filter: drop-shadow(0 0 4px #22C55E); }
+.rarity-rare { filter: drop-shadow(0 0 6px #3B82F6); }
+.rarity-epic { filter: drop-shadow(0 0 8px #A855F7); }
+.rarity-legendary { 
+  filter: drop-shadow(0 0 10px #F59E0B); 
+  animation: pulse-glow 2s infinite;
+}
+.rarity-mythic {
+  background: linear-gradient(135deg, #FF6B6B, #FFE66D, #4ECDC4, #45B7D1, #96CEB4, #DDA0DD);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 3s linear infinite;
+}
+
+@keyframes rainbow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Button styles */
+@layer components {
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-6 rounded-xl transition-all active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply bg-surface hover:bg-surface/80 text-white font-medium py-2 px-4 rounded-xl border border-white/10 transition-all active:scale-95;
+  }
+  
+  .btn-accent {
+    @apply bg-accent hover:bg-accent/90 text-black font-semibold py-3 px-6 rounded-xl transition-all active:scale-95;
+  }
+  
+  .card {
+    @apply bg-surface rounded-2xl p-4 border border-white/5;
+  }
+  
+  .stat-bar {
+    @apply h-2 bg-background rounded-full overflow-hidden;
+  }
+  
+  .stat-fill {
+    @apply h-full rounded-full transition-all duration-300;
+  }
+}
