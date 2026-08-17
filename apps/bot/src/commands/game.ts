@@ -1,6 +1,6 @@
-import type { CommandContext } from 'grammy';
+import { Context, CommandContext } from 'grammy';
 
-export async function gameCommand(ctx: CommandContext) {
+export async function gameCommand(ctx: CommandContext<Context>) {
   await ctx.reply(
     `🎮 МИНИ-ИГРА: Поймай звезду!\n\n` +
     `Лови падающие звёзды в течение 30 секунд!\n\n` +

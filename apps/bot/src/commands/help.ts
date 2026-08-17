@@ -1,6 +1,6 @@
-import type { CommandContext } from 'grammy';
+import { Context, CommandContext } from 'grammy';
 
-export async function helpCommand(ctx: CommandContext) {
+export async function helpCommand(ctx: CommandContext<Context>) {
   await ctx.reply(
     `❓ КАПСУЛА — Помощь\n\n` +
     `📌 ОСНОВЫ:\n` +

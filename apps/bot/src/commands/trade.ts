@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import type { CommandContext } from 'grammy';
+import { Context, CommandContext } from 'grammy';
 
-export async function tradeCommand(ctx: CommandContext, prisma: PrismaClient) {
+export async function tradeCommand(ctx: CommandContext<Context>, prisma: PrismaClient) {
   const telegramId = ctx.from?.id;
   if (!telegramId) return;
 

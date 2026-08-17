@@ -1,7 +1,7 @@
-import type { CommandContext } from 'grammy';
+import { Context, CommandContext } from 'grammy';
 import { capsuleSizeKeyboard } from '../keyboards/menu.js';
 
-export async function capsulesCommand(ctx: CommandContext) {
+export async function capsulesCommand(ctx: CommandContext<Context>) {
   await ctx.reply(
     `🎁 МАГАЗИН КАПСУЛ\n\n` +
     `Выбери размер капсулы:\n\n` +

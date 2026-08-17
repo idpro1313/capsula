@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client';
-import type { CommandContext } from 'grammy';
+import { Context, CommandContext } from 'grammy';
 import { mainMenuKeyboard, backToMenuKeyboard } from '../keyboards/menu.js';
 
-export async function startCommand(ctx: CommandContext, prisma: PrismaClient) {
+export async function startCommand(ctx: CommandContext<Context>, prisma: PrismaClient) {
   const telegramId = ctx.from?.id;
   if (!telegramId) return;
 
