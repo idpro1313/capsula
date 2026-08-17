@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import type { CallbackQuery } from 'grammy';
+import { Context } from 'grammy';
 
-export async function handleCallbackQuery(ctx: CallbackQuery, prisma: PrismaClient) {
+export async function handleCallbackQuery(ctx: Context, prisma: PrismaClient) {
   const data = ctx.callbackQuery?.data;
   if (!data) return;
 
@@ -49,7 +49,7 @@ export async function handleCallbackQuery(ctx: CallbackQuery, prisma: PrismaClie
 }
 
 async function handleCapsulePurchase(
-  ctx: CallbackQuery,
+  ctx: Context,
   prisma: PrismaClient,
   user: { id: string; starsBalance: number; firstName: string },
   data: string,
@@ -164,7 +164,7 @@ async function generatePet(prisma: PrismaClient, capsuleType: string): Promise<{
 }
 
 async function handlePetAction(
-  ctx: CallbackQuery,
+  ctx: Context,
   prisma: PrismaClient,
   user: { id: string },
   data: string,

@@ -1,4 +1,4 @@
-import { Bot, session } from 'grammy';
+import { Bot, session, Context } from 'grammy';
 import { PrismaClient } from '@prisma/client';
 import express, { Request, Response } from 'express';
 

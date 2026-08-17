@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
-import type { Message } from 'grammy';
+import type { Context } from 'grammy';
 
-export async function handleMessage(ctx: Message, prisma: PrismaClient) {
+export async function handleMessage(ctx: Context, prisma: PrismaClient) {
   // Placeholder for any text message handling
   // Could be used for inline name editing, custom commands, etc.
   
