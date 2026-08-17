@@ -197,20 +197,3 @@ model GameSession {
 
   @@map("game_sessions")
 }
-
-// ============================================
-// INDEXES
-// ============================================
-
-// For leaderboard queries
-@@index([experience])
-@@index([level])
-
-// For trade listings
-@@index([status])
-@@index([priceStars])
-
-// For user stats updates
-@@index([hunger])
-@@index([happiness])
-@@index([energy])
