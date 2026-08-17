@@ -28,10 +28,10 @@ COPY --from=deps /app/packages/shared/node_modules ./packages/shared/node_module
 # Copy source code
 COPY apps/bot/src ./apps/bot/src
 COPY apps/bot/prisma ./apps/bot/prisma
+COPY apps/bot/tsconfig.json ./apps/bot/
 COPY apps/bot/package*.json ./apps/bot/
 COPY packages/shared/src ./packages/shared/src
 COPY packages/shared/package*.json ./packages/shared/
-COPY tsconfig.json ./
 
 # Build TypeScript
 WORKDIR /app/apps/bot
